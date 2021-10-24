@@ -1,0 +1,18 @@
+<svg viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg">
+	<g class="ew-mist" fill="currentColor">
+		<path fill-rule="evenodd" clip-rule="evenodd" d="M2.75,18h14c0.552,0,1,0.447,1,1c0,0.552-0.448,1-1,1h-14 c-0.553,0-1-0.448-1-1C1.75,18.448,2.197,18,2.75,18z"/>
+		<path fill-rule="evenodd" clip-rule="evenodd" d="M22.75,18h14c0.552,0,1,0.447,1,1c0,0.552-0.448,1-1,1h-14 c-0.553,0-1-0.448-1-1C21.75,18.448,22.197,18,22.75,18z"/>
+	</g>
+	<g class="ew-mist" fill="currentColor">
+		<path fill-rule="evenodd" clip-rule="evenodd" d="M1.25,12h24c0.552,0,1,0.447,1,1c0,0.552-0.448,1-1,1h-24 c-0.553,0-1-0.448-1-1C0.25,12.448,0.697,12,1.25,12z"/>
+		<path fill-rule="evenodd" clip-rule="evenodd" d="M30.25,13c0-0.553,0.447-1,1-1h8c0.552,0,1,0.447,1,1 c0,0.552-0.448,1-1,1h-8C30.697,14,30.25,13.552,30.25,13z"/>
+	</g>
+	<g class="ew-mist" fill="currentColor">
+		<path fill-rule="evenodd" clip-rule="evenodd" d="M39,2h-8c-0.553,0-1-0.448-1-1c0-0.553,0.447-1,1-1h8 c0.552,0,1,0.447,1,1C40,1.552,39.552,2,39,2z"/>
+		<path fill-rule="evenodd" clip-rule="evenodd" d="M25,2H1C0.447,2,0,1.552,0,1c0-0.553,0.447-1,1-1h24 c0.552,0,1,0.447,1,1C26,1.552,25.552,2,25,2z"/>
+	</g>
+	<g class="ew-mist" fill="currentColor">
+		<path fill-rule="evenodd" clip-rule="evenodd" d="M3.25,7.75c-0.553,0-1-0.448-1-1s0.447-1,1-1h8 c0.552,0,1,0.448,1,1s-0.448,1-1,1H3.25z"/>
+		<path fill-rule="evenodd" clip-rule="evenodd" d="M17.25,7.75c-0.553,0-1-0.448-1-1s0.447-1,1-1h20 c0.552,0,1,0.448,1,1s-0.448,1-1,1H17.25z"/>
+	</g>
+</svg>

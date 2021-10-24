@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap");
+body, html {
+  margin: 0;
+  padding: 0;
+}
+
+.ew-weather {
+  font-family: "Open Sans", sans-serif;
+  font-size: 16px;
+}
+.ew-weather svg {
+  max-width: 100%;
+  display: inline-block;
+  width: 40px;
+}
+.ew-weather.ew-content {
+  line-height: 40px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}

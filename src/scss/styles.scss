@@ -1,0 +1,21 @@
+@import 'variables';
+
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+.ew-weather {
+    font-family: $font-family;
+    font-size: $font-size;
+    svg {
+        max-width: 100%;
+        display: inline-block;
+        width: $icon-size;
+    }
+
+    &.ew-content {
+        line-height: $weather-content-line-height;
+        display: inline-flex;
+    }
+}

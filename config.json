@@ -1,0 +1,32 @@
+{
+    "root": "src",
+    "output": "dist",
+    "prefix": "ew",
+    "debug": false,
+    "assets": [
+        "images",
+        "html"
+    ],
+    "es6": {
+        "format": "umd",
+        "module": "EasyWeather"
+    },
+    "files": {
+        "styles": {
+            "src": "{$config.root}/scss/styles.scss",
+            "output": "{$config.output}/css/styles.css"
+        },
+        "scripts": {
+            "src": "{$config.root}/js/core.js",
+            "output": "{$config.output}/js/easy-weather.js"
+        },
+        "images": {
+            "src": "{$config.root}/images/**/*",
+            "output": "{$config.output}/images/"
+        },
+        "html": {
+            "src": "{$config.root}/**/*.html",
+            "output": "{$config.output}/"
+        }
+    }
+}

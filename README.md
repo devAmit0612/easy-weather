@@ -16,6 +16,10 @@ For use this plugin firstly you have to [Register](https://home.openweathermap.o
 * [Minimal Weather](https://devamit0612.github.io/easy-weather/dist/minimal.html)
 
 ## Installation
+### NPM install
+```console
+npm i easy-weather-npm
+```
 
 ### Gulp Build
 #### Development Build

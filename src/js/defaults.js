@@ -3,6 +3,8 @@ export default {
     lang: 'en',
     code: null,
     location: null,
+    lat: null,
+    lng: null,
 
     template: null,
     iconStyle: 'flat',
@@ -31,5 +33,5 @@ export default {
         details: 'Details'
     },
 
-    customTemplate: function(weather) {}
+    customTemplate: function(element, weather) {}
 };

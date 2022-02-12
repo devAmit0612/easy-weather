@@ -9,15 +9,14 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div id="weather"></div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <div id="weather" style="max-width: 380px;"></div>
+    
     <script src="js/easy-weather.js"></script>
     <script type="text/javascript">
         const weather = new EasyWeather('#weather', {
             key: '1d74efe09d3495016664881f4a09a7ff',
-            location: 'Ahmedabad',
-            iconStyle: 'line',
+            location: 'London',
+            iconStyle: 'flat',
             iconAnimation: true,
             template: 'compact',
             details: true,

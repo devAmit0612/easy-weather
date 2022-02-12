@@ -1,8 +1,131 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
 
+$prefix: ew- !default;
+
+// colors
+$black: #000000;
+$white: #FFFFFF;
 
 $font-family: 'Open Sans', sans-serif !default;
-$font-size: 16px !default;
+$font-size: 14px !default;
 $icon-size: 40px !default;
 
+$weather-cloud: #00AEEF;
+$weather-mist: #D1D2D4;
+$weather-light: #F3A81D;
+$weather-rain: #3D77BC;
+$weather-sun: #F1A81E;
+$weather-snow: #4DC7E5;
+$weather-moon: #E6E7E8;
+
 $weather-content-line-height: $icon-size !default;
+
+$weather-image-url: '../images/background/' !default;
+$weather-bg-image: (
+    mist: 'mist.jpg',
+    storm: 'storm.jpg',
+    day-clear: 'day-clear.jpg',
+    day-cloud: 'day-cloud.jpg',
+    day-rain: 'rain.jpg',
+    day-snow: 'snow.jpg',
+    night-clear: 'night-clear.jpg',
+    night-cloud: 'night-cloud.jpg',
+    night-rain: 'rain.jpg',
+    night-snow: 'snow.jpg'
+) !default;
+
+$weather-tab-link-padding-x: 8px !default;
+$weather-tab-link-font-weight: 600 !default;
+$weather-tab-link-transform: uppercase !default;
+$weather-tab-link-color: inherit !default;
+
+$weather-main-icon-margin-y: 8px !default;
+
+$weather-temp-font-size: 24px !default;
+$weather-temp-font-weight: 500 !default;
+$weather-temp-margin: 16px !default;
+
+$weather-date-margin-bottom: 8px !default;
+$weather-date-font-weight: 700 !default;
+
+$weather-description-margin-y: 8px !default;
+
+$weather-title-font-weight: 600 !default;
+$weather-title-text-transform: uppercase !default;
+$weather-title-margin-bottom: 16px !default;
+
+$weather-temp-data-font-size: 12px !default;
+$weather-temp-data-padding-bottom: 8px !default;
+$weather-temp-data-width: 20% !default;
+$weather-temp-data-day-transform: uppercase !default;
+$weather-temp-data-temp-font-weight: 600 !default;
+
+$weather-temp-details-title-opacity: 0.6 !default;
+$weather-temp-details-title-font-size: 12px !default;
+$weather-temp-details-title-font-weight: 600 !default;
+$weather-temp-details-title-transform: uppercase !default;
+
+$weather-temp-details-text-font-size: 16px !default;
+
+$weather-temp-details-item-width: 50% !default;
+$weather-temp-details-item-margin-bottom: 16px !default;
+$weather-temp-details-item-padding: $weather-temp-details-item-margin-bottom 24px 0 !default;
+$weather-temp-details-item-border-radius: 24px !default;
+
+$weather-icon-height: 32px !default;
+$weather-icon-margin-y: 8px !default;
+
+$weather-card-padding: 32px 16px !default; 
+
+$weather-card-item-bg: rgba($black, .8) !default; 
+$weather-card-item-padding: 24px 16px !default; 
+$weather-card-item-margin-top: 24px !default; 
+$weather-card-item-border-radius: 8px !default; 
+
+$weather-classic-bg: #F5F6F7 !default; 
+$weather-classic-body-padding: 64px 32px 32px !default; 
+$weather-classic-body-date-margin-bottom: 16px !default;
+
+$weather-classic-foot-padding: 24px !default; 
+
+$weather-compact-padding: $weather-card-padding !default; 
+
+$weather-compact-main-bg: $weather-classic-bg !default; 
+$weather-compact-main-padding: 24px 16px !default; 
+$weather-compact-main-border-radius: 8px !default; 
+$weather-compact-main-margin-bottom: 24px !default; 
+$weather-compact-main-icon-padding-left: 24px !default; 
+$weather-compact-main-temp-font-size: 20px !default; 
+$weather-compact-main-head-margin-bottom: 8px !default; 
+$weather-compact-main-head-margin-bottom: 8px !default;
+
+$weather-compact-details-padding-x: 24px !default;
+
+$weather-compact-temp-item-margin-top: 8px !default; 
+$weather-compact-temp-item-padding-left: 32px !default; 
+$weather-compact-temp-item-icon-size: 32px !default; 
+
+
+$weather-full-main-temp-position-x: 5vw !default; 
+$weather-full-main-temp-position-y: 15vh !default; 
+$weather-full-main-temp-font-size: 24px !default;
+$weather-full-description-temp-font-size: 20px !default;
+$weather-full-temp-details-margin-y: 4px !default;
+
+$weather-full-details-padding-y: 48px !default;
+$weather-full-details-padding-x: 24px !default;
+$weather-full-details-width: 240px !default;
+$weather-full-details-bg: rgba($black, .8) !default;
+$weather-full-details-item-padding-y: 24px !default;
+$weather-full-details-item-margin-y: 24px !default;
+$weather-full-details-item-border-color: rgba($white, .2) !default;
+$weather-full-details-temp-item-margin-bottom: 8px !default;
+
+$weather-minimal-details-margin-top: 32px !default;
+$weather-minimal-temp-item-margin-left: 8px !default;
+$weather-minimal-temp-card-padding-y: 24px !default;
+$weather-minimal-temp-card-padding-x: 8px !default;
+$weather-minimal-temp-card-border-radius: 64px !default;
+$weather-minimal-temp-card-bg: #4f48ec !default;
+$weather-minimal-temp-card-color: #fff !default;
+$weather-minimal-temp-bg: #F5F6F7 !default; 

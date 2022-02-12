@@ -17,7 +17,7 @@ export default class Weather extends Template {
         if (this.options.template) {
             this.getTemplate();    
         } else {
-            this.options.customTemplate(this.weather);
+            this.options.customTemplate(this.element, this.weather);
         }
     }
 

@@ -16,6 +16,7 @@ export default class Template extends Icon {
     };
 
     classes = {
+        flat: this.prefix + 'flat-icon',
         animate: this.prefix + 'animate',
         content: this.prefix + 'content',
         weather: this.prefix + 'weather',
@@ -31,8 +32,7 @@ export default class Template extends Icon {
 
         let classes = this.classes.weather;
         classes += this.options.iconAnimation ? ' ' + this.classes.animate : '';
-
-        console.log('Weather data: ', this.weather);
+        classes += this.options.iconStyle === 'flat' ? ' ' + this.classes.flat : '';
 
         switch (this.options.template) {
 
@@ -42,7 +42,7 @@ export default class Template extends Icon {
                 break;
             
             case this.templates.classic:
-                classes += ' ' + this.classes.classic;
+                classes += ' ' + this.classes.classic + this.getBgClass();
                 html.innerHTML = this.classicTemplate();
                 break;
             
@@ -57,7 +57,7 @@ export default class Template extends Icon {
                 break;
             
             case this.templates.minimal:
-                classes += ' ' + this.classes.minimal + this.getBgClass();
+                classes += ' ' + this.classes.minimal;
                 html.innerHTML = this.minimalTemplate();
                 break;
         
@@ -73,7 +73,7 @@ export default class Template extends Icon {
     }
 
     cardTemplate() {
-        let html = `<div class="${this.classes.card}__item">
+        let html = `<div class="${this.classes.card}__item ${this.classes.card}__item--main">
             <div class="${this.classes.card}__col">
                 ${this.getIconTemplate()}
                 ${this.getTempDescription()}
@@ -111,9 +111,9 @@ export default class Template extends Icon {
     classicTemplate() {
         let html = `<div class="${this.classes.classic}__body">
             ${this.getIconTemplate()}
-            ${this.getTempTemplate()}
             ${this.getTempDescription()}
-        <div class="${this.classes.classic}__body__date">${this.getTempLocDate()}</div>`;
+            <div class="${this.classes.classic}__body__date">${this.getTempLocDate()}</div>
+            ${this.getTempTemplate()}`;
 
         if (this.options.details) {
             html += `${this.getDetailsTemplate()}</div>`
@@ -230,7 +230,7 @@ export default class Template extends Icon {
     getIconTemplate() {
         return `<div class="${this.prefix}main-icon">
             <span class="${this.prefix}temp">${this.weather.temp.current}</span>
-            ${this.options.icon ? `<span class="${this.prefix}temp">${this.weather.icon}</span>` : ``}
+            ${this.options.icon ? `<span class="${this.prefix}icon">${this.weather.icon}</span>` : ``}
         </div>`;
     }
 
@@ -302,8 +302,20 @@ export default class Template extends Icon {
     }
 
     getDetailsTemplate() {
-        return `<div class="${this.prefix}temp-detail">
+        let html = `<div class="${this.prefix}temp-detail">`;
+        
+        if (this.options.sunTime) {
+            html += `<div class="${this.prefix}temp-detail__item">
+                <span class="${this.prefix}temp-detail__title">Sunrise</span>
+                <span class="${this.prefix}temp-detail__text">${this.weather.sunrise}</span>
+            </div>
             <div class="${this.prefix}temp-detail__item">
+                <span class="${this.prefix}temp-detail__title">Sunset</span>
+                <span class="${this.prefix}temp-detail__text">${this.weather.sunset}</span>
+            </div>`;
+        }
+
+        html += `<div class="${this.prefix}temp-detail__item">
                 <span class="${this.prefix}temp-detail__title">Wind speed</span>
                 <span class="${this.prefix}temp-detail__text">${this.weather.wind}</span>
             </div>
@@ -320,6 +332,8 @@ export default class Template extends Icon {
                 <span class="${this.prefix}temp-detail__text">${this.weather.pressure}</span>
             </div>
         </div>`;
+
+        return html;
     }
 
     getBgClass() {

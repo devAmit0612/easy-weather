@@ -979,6 +979,8 @@
 	  lang: 'en',
 	  code: null,
 	  location: null,
+	  lat: null,
+	  lng: null,
 	  template: null,
 	  iconStyle: 'flat',
 	  description: false,
@@ -1002,7 +1004,7 @@
 	    quarterly: 'Quarterly',
 	    details: 'Details'
 	  },
-	  customTemplate: function customTemplate(weather) {}
+	  customTemplate: function customTemplate(element, weather) {}
 	};
 
 	var defineProperty = createCommonjsModule(function (module) {
@@ -1089,7 +1091,7 @@
 
 	    _defineProperty(_assertThisInitialized(_this), "element", void 0);
 
-	    _defineProperty(_assertThisInitialized(_this), "days", ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']);
+	    _defineProperty(_assertThisInitialized(_this), "days", ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
 
 	    _defineProperty(_assertThisInitialized(_this), "months", ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']);
 
@@ -1407,6 +1409,7 @@
 	    });
 
 	    _defineProperty(_assertThisInitialized(_this), "classes", {
+	      flat: _this.prefix + 'flat-icon',
 	      animate: _this.prefix + 'animate',
 	      content: _this.prefix + 'content',
 	      weather: _this.prefix + 'weather',
@@ -1426,7 +1429,7 @@
 	      var html = document.createElement('div');
 	      var classes = this.classes.weather;
 	      classes += this.options.iconAnimation ? ' ' + this.classes.animate : '';
-	      console.log('Weather data: ', this.weather);
+	      classes += this.options.iconStyle === 'flat' ? ' ' + this.classes.flat : '';
 
 	      switch (this.options.template) {
 	        case this.templates.card:
@@ -1435,7 +1438,7 @@
 	          break;
 
 	        case this.templates.classic:
-	          classes += ' ' + this.classes.classic;
+	          classes += ' ' + this.classes.classic + this.getBgClass();
 	          html.innerHTML = this.classicTemplate();
 	          break;
 
@@ -1450,7 +1453,7 @@
 	          break;
 
 	        case this.templates.minimal:
-	          classes += ' ' + this.classes.minimal + this.getBgClass();
+	          classes += ' ' + this.classes.minimal;
 	          html.innerHTML = this.minimalTemplate();
 	          break;
 
@@ -1467,7 +1470,7 @@
 	  }, {
 	    key: "cardTemplate",
 	    value: function cardTemplate() {
-	      var html = "<div class=\"".concat(this.classes.card, "__item\">\n            <div class=\"").concat(this.classes.card, "__col\">\n                ").concat(this.getIconTemplate(), "\n                ").concat(this.getTempDescription(), "\n            </div>\n            <div class=\"").concat(this.classes.card, "__col\">\n                ").concat(this.getTempLocDate(), "\n            </div>\n        </div>");
+	      var html = "<div class=\"".concat(this.classes.card, "__item ").concat(this.classes.card, "__item--main\">\n            <div class=\"").concat(this.classes.card, "__col\">\n                ").concat(this.getIconTemplate(), "\n                ").concat(this.getTempDescription(), "\n            </div>\n            <div class=\"").concat(this.classes.card, "__col\">\n                ").concat(this.getTempLocDate(), "\n            </div>\n        </div>");
 
 	      if (this.options.quarterly) {
 	        html += "<div class=\"".concat(this.classes.card, "__item\">\n                <span class=\"").concat(this.prefix, "title\">").concat(this.options.title.quarterly, "</span>\n                ").concat(this.getQuarterlyTemplate(), "\n            </div>");
@@ -1486,7 +1489,7 @@
 	  }, {
 	    key: "classicTemplate",
 	    value: function classicTemplate() {
-	      var html = "<div class=\"".concat(this.classes.classic, "__body\">\n            ").concat(this.getIconTemplate(), "\n            ").concat(this.getTempTemplate(), "\n            ").concat(this.getTempDescription(), "\n        <div class=\"").concat(this.classes.classic, "__body__date\">").concat(this.getTempLocDate(), "</div>");
+	      var html = "<div class=\"".concat(this.classes.classic, "__body\">\n            ").concat(this.getIconTemplate(), "\n            ").concat(this.getTempDescription(), "\n            <div class=\"").concat(this.classes.classic, "__body__date\">").concat(this.getTempLocDate(), "</div>\n            ").concat(this.getTempTemplate());
 
 	      if (this.options.details) {
 	        html += "".concat(this.getDetailsTemplate(), "</div>");
@@ -1574,7 +1577,7 @@
 	  }, {
 	    key: "getIconTemplate",
 	    value: function getIconTemplate() {
-	      return "<div class=\"".concat(this.prefix, "main-icon\">\n            <span class=\"").concat(this.prefix, "temp\">").concat(this.weather.temp.current, "</span>\n            ").concat(this.options.icon ? "<span class=\"".concat(this.prefix, "temp\">").concat(this.weather.icon, "</span>") : "", "\n        </div>");
+	      return "<div class=\"".concat(this.prefix, "main-icon\">\n            <span class=\"").concat(this.prefix, "temp\">").concat(this.weather.temp.current, "</span>\n            ").concat(this.options.icon ? "<span class=\"".concat(this.prefix, "icon\">").concat(this.weather.icon, "</span>") : "", "\n        </div>");
 	    }
 	  }, {
 	    key: "getTempTemplate",
@@ -1639,7 +1642,14 @@
 	  }, {
 	    key: "getDetailsTemplate",
 	    value: function getDetailsTemplate() {
-	      return "<div class=\"".concat(this.prefix, "temp-detail\">\n            <div class=\"").concat(this.prefix, "temp-detail__item\">\n                <span class=\"").concat(this.prefix, "temp-detail__title\">Wind speed</span>\n                <span class=\"").concat(this.prefix, "temp-detail__text\">").concat(this.weather.wind, "</span>\n            </div>\n            <div class=\"").concat(this.prefix, "temp-detail__item\">\n                <span class=\"").concat(this.prefix, "temp-detail__title\">Humidity</span>\n                <span class=\"").concat(this.prefix, "temp-detail__text\">").concat(this.weather.humidity, "</span>\n            </div>\n            <div class=\"").concat(this.prefix, "temp-detail__item\">\n                <span class=\"").concat(this.prefix, "temp-detail__title\">Visibility</span>\n                <span class=\"").concat(this.prefix, "temp-detail__text\">").concat(this.weather.visibility, "</span>\n            </div>\n            <div class=\"").concat(this.prefix, "temp-detail__item\">\n                <span class=\"").concat(this.prefix, "temp-detail__title\">Pressure</span>\n                <span class=\"").concat(this.prefix, "temp-detail__text\">").concat(this.weather.pressure, "</span>\n            </div>\n        </div>");
+	      var html = "<div class=\"".concat(this.prefix, "temp-detail\">");
+
+	      if (this.options.sunTime) {
+	        html += "<div class=\"".concat(this.prefix, "temp-detail__item\">\n                <span class=\"").concat(this.prefix, "temp-detail__title\">Sunrise</span>\n                <span class=\"").concat(this.prefix, "temp-detail__text\">").concat(this.weather.sunrise, "</span>\n            </div>\n            <div class=\"").concat(this.prefix, "temp-detail__item\">\n                <span class=\"").concat(this.prefix, "temp-detail__title\">Sunset</span>\n                <span class=\"").concat(this.prefix, "temp-detail__text\">").concat(this.weather.sunset, "</span>\n            </div>");
+	      }
+
+	      html += "<div class=\"".concat(this.prefix, "temp-detail__item\">\n                <span class=\"").concat(this.prefix, "temp-detail__title\">Wind speed</span>\n                <span class=\"").concat(this.prefix, "temp-detail__text\">").concat(this.weather.wind, "</span>\n            </div>\n            <div class=\"").concat(this.prefix, "temp-detail__item\">\n                <span class=\"").concat(this.prefix, "temp-detail__title\">Humidity</span>\n                <span class=\"").concat(this.prefix, "temp-detail__text\">").concat(this.weather.humidity, "</span>\n            </div>\n            <div class=\"").concat(this.prefix, "temp-detail__item\">\n                <span class=\"").concat(this.prefix, "temp-detail__title\">Visibility</span>\n                <span class=\"").concat(this.prefix, "temp-detail__text\">").concat(this.weather.visibility, "</span>\n            </div>\n            <div class=\"").concat(this.prefix, "temp-detail__item\">\n                <span class=\"").concat(this.prefix, "temp-detail__title\">Pressure</span>\n                <span class=\"").concat(this.prefix, "temp-detail__text\">").concat(this.weather.pressure, "</span>\n            </div>\n        </div>");
+	      return html;
 	    }
 	  }, {
 	    key: "getBgClass",
@@ -1762,7 +1772,7 @@
 	                if (this.options.template) {
 	                  this.getTemplate();
 	                } else {
-	                  this.options.customTemplate(this.weather);
+	                  this.options.customTemplate(this.element, this.weather);
 	                }
 
 	              case 10:
@@ -2020,6 +2030,8 @@
 
 	                    if (_this.options.forecast || _this.options.quarterly) {
 	                      _this.getForecastWeather();
+	                    } else {
+	                      _this.initWeatherDate();
 	                    }
 	                  } else {
 	                    alert('Message: ', data.message);

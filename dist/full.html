@@ -10,19 +10,20 @@
 </head>
 <body>
     <div id="weather"></div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
     <script src="js/easy-weather.js"></script>
     <script type="text/javascript">
         const weather = new EasyWeather('#weather', {
             key: '1d74efe09d3495016664881f4a09a7ff',
-            location: 'Ahmedabad',
+            location: 'London',
             iconStyle: 'line',
             iconAnimation: true,
             template: 'full',
+            sunTime: true,
             details: true,
             forecast: true,
-            quarterly: true
+            quarterly: true,
+            description: true
         });
     </script>
 </body>

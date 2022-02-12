@@ -1,11 +1,12 @@
 @import 'variables';
+@import 'mixins';
 
 body, html {
     margin: 0;
     padding: 0;
 }
 
-.ew-weather {
+.#{$prefix}weather {
     font-family: $font-family;
     font-size: $font-size;
     svg {
@@ -14,8 +15,550 @@ body, html {
         width: $icon-size;
     }
 
-    &.ew-content {
+    &.#{$prefix}content {
         line-height: $weather-content-line-height;
         display: inline-flex;
     }
+
+    &.#{$prefix}flat-icon {
+        .#{$prefix}mist {
+            color: $weather-mist;
+        }
+        .#{$prefix}moon {
+            color: $weather-moon;
+        }
+        .#{$prefix}cloud {
+            color: $weather-cloud;
+        }
+        .#{$prefix}snow {
+            color: $weather-snow;
+        }
+        .#{$prefix}rain {
+            color: $weather-rain;
+        }
+        .#{$prefix}light {
+            color: $weather-light;
+        }
+        .#{$prefix}sun, .#{$prefix}sun-ray {
+            color: $weather-sun;
+        }
+    }
+
+    // tab styling
+    .#{$prefix}tab {
+        display: flex;
+        align-items: center;
+        margin: 0 -#{$weather-tab-link-padding-x} $weather-tab-link-padding-x * 2;
+        .#{$prefix}tab__link {
+            text-decoration: none;
+            color: $weather-tab-link-color;
+            padding-left: $weather-tab-link-padding-x;
+            padding-right: $weather-tab-link-padding-x;
+            font-weight: $weather-tab-link-font-weight;
+            text-transform: $weather-tab-link-transform;
+            &:not(.active) {
+                opacity: 0.4;
+            }
+        }
+    }
+    
+    .#{$prefix}tab-data {
+        display: none;
+        &.show {
+            display: block;
+        }
+    }
+}
+
+// scrollbar styling
+.#{$prefix}temp-data::-webkit-scrollbar {
+    height: 4px;
+}
+
+.#{$prefix}temp-data::-webkit-scrollbar-thumb {
+    outline: none;
+    border-radius: 10px;
+}
+
+// common styling
+.#{$prefix}card,
+.#{$prefix}full,
+.#{$prefix}classic .#{$prefix}classic__body {
+    @include pseudo-element;
+}
+
+.#{$prefix}card,
+.#{$prefix}full {
+    color: $white;
+
+    @each $name, $value in $weather-bg-image {
+        &.#{$prefix}#{$name} {
+            background-image: url(#{$weather-image-url} + 'large/' + #{$value});
+        }
+    }
+}
+
+.#{$prefix}card,
+.#{$prefix}classic .#{$prefix}classic__body {
+    .#{$prefix}main-icon {
+        .#{$prefix}temp {
+            font-size: $weather-temp-font-size;
+            font-weight: $weather-temp-font-weight;
+        }
+    }
+}
+
+.#{$prefix}card,
+.#{$prefix}classic,
+.#{$prefix}minimal {
+    .#{$prefix}temp-data {
+        display: flex;
+        overflow: auto;
+        padding-bottom: $weather-temp-data-padding-bottom;
+
+        .#{$prefix}temp-data__day {
+            text-transform: $weather-temp-data-day-transform;
+        }
+
+        .#{$prefix}temp-data__temp {
+            font-weight: $weather-temp-data-temp-font-weight;
+        }
+
+        .#{$prefix}temp-data__icon {
+            height: $weather-icon-height;
+            margin-top: $weather-icon-margin-y;
+            margin-bottom: $weather-icon-margin-y;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+                max-height: 100%;
+            }
+        }
+        .#{$prefix}temp-data__item {
+            flex: 0 0 $weather-temp-data-width;
+            max-width: $weather-temp-data-width;
+            font-size: $weather-temp-data-font-size;
+            text-align: center;
+        }
+        .#{$prefix}temp-data__card {
+            > * {
+                display: block;
+            }
+        }
+    }
+}
+
+.#{$prefix}card,
+.#{$prefix}classic {
+    .#{$prefix}date {
+        font-weight: $weather-date-font-weight;
+    }
+}
+
+.#{$prefix}card,
+.#{$prefix}classic,
+.#{$prefix}compact {
+    .#{$prefix}temp-detail {
+        margin-bottom: -$weather-temp-details-item-margin-bottom;
+    }
+}
+
+.#{$prefix}card,
+.#{$prefix}classic,
+.#{$prefix}minimal {
+    .#{$prefix}temp-detail .#{$prefix}temp-detail__item,
+    .#{$prefix}temp-list .#{$prefix}temp-list__item {
+        margin-bottom: $weather-temp-details-item-margin-bottom;
+    }
+}
+
+.#{$prefix}card,
+.#{$prefix}classic,
+.#{$prefix}compact,
+.#{$prefix}minimal {
+    .#{$prefix}temp-list,
+    .#{$prefix}temp-detail {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .#{$prefix}temp-list .#{$prefix}temp-list__item {
+        flex: 0 0 $weather-temp-details-item-width;
+        max-width: $weather-temp-details-item-width;
+        .#{$prefix}temp-list__item__text {
+            font-size: $weather-temp-details-title-font-size;
+            font-weight: $weather-temp-details-title-font-weight;
+            text-transform: $weather-temp-details-title-transform;
+        }
+    }
+
+    .#{$prefix}temp-detail {
+        .#{$prefix}temp-detail__item {
+            flex: 0 0 $weather-temp-details-item-width;
+            max-width: $weather-temp-details-item-width;
+            .#{$prefix}temp-detail__title {
+                font-size: $weather-temp-details-title-font-size;
+                font-weight: $weather-temp-details-title-font-weight;
+                text-transform: $weather-temp-details-title-transform;
+            }
+        }
+    }
+
+    .#{$prefix}temp-detail {
+        .#{$prefix}temp-detail__title {
+            display: block;
+        }
+    }
+}
+
+// card styling
+.#{$prefix}card {    
+    padding: $weather-card-padding;
+
+    .#{$prefix}temp-data::-webkit-scrollbar {
+        background-color: rgba($white, .2);
+    }
+
+    .#{$prefix}temp-data::-webkit-scrollbar-thumb {
+        background-color: rgba($white, .5);
+    }
+
+    .#{$prefix}card__item {
+        position: relative;
+        z-index: 2;
+        background: $weather-card-item-bg;
+        border-radius: $weather-card-item-border-radius;
+        padding: $weather-card-item-padding;
+
+        + .#{$prefix}card__item {
+            margin-top: $weather-card-item-margin-top;
+        }
+
+        &.#{$prefix}card__item--main {
+            display: flex;
+            align-items: center;
+        }
+    }
+
+    .#{$prefix}card__col {
+        flex-grow: 1;
+        flex-basis: 0;
+    }
+    
+    .#{$prefix}main-icon {
+        display: flex;
+        align-items: center;
+        > * {
+            display: inline-flex;
+        }
+
+        .#{$prefix}temp {
+            margin-right: $weather-temp-margin;
+        }
+    }
+
+    .#{$prefix}date,
+    .#{$prefix}location {
+        display: block;
+        text-align: right;
+    }
+
+    .#{$prefix}date {
+        margin-bottom: $weather-date-margin-bottom;
+    }
+
+    .#{$prefix}description {
+        display: block;
+        margin-top: $weather-description-margin-y;
+    }
+    
+    .#{$prefix}title {
+        display: block;
+        font-weight: $weather-title-font-weight;
+        text-transform: $weather-title-text-transform;
+        margin-bottom: $weather-title-margin-bottom;
+    }
+
+    .#{$prefix}temp-list .#{$prefix}temp-list__item {
+        .#{$prefix}temp-list__item__text {
+            display: block;
+        }
+    }
+}
+
+.#{$prefix}classic {
+    background: $weather-classic-bg;
+
+    .#{$prefix}temp-data::-webkit-scrollbar {
+        background-color: rgba($black, .2);
+    }
+
+    .#{$prefix}temp-data::-webkit-scrollbar-thumb {
+        background-color: rgba($black, .5);
+    }
+
+    @each $name, $value in $weather-bg-image {
+        &.#{$prefix}#{$name} .#{$prefix}classic__body {
+            background-image: url(#{$weather-image-url} + 'large/' + #{$value});
+        }
+    }
+
+    .#{$prefix}classic__body {
+        color: $white;
+        padding: $weather-classic-body-padding;
+        > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .#{$prefix}main-icon {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: $weather-main-icon-margin-y;
+            .#{$prefix}temp {
+                margin-bottom: $weather-temp-margin;
+            }
+        }
+
+        .#{$prefix}classic__body__date {
+            margin-bottom: $weather-classic-body-date-margin-bottom;
+        }
+    }
+
+    .#{$prefix}classic__foot {
+        padding: $weather-classic-foot-padding;
+    }
+
+    .#{$prefix}temp-list .#{$prefix}temp-list__item {
+        .#{$prefix}temp-list__item__title {
+            font-size: $weather-temp-details-text-font-size;
+        }
+        .#{$prefix}temp-list__item__text {
+            opacity: $weather-temp-details-title-opacity;
+        }
+    }
+}
+
+.#{$prefix}compact,
+.#{$prefix}full {
+    .#{$prefix}temp-data {
+        .#{$prefix}temp-data__item + .#{$prefix}temp-data__item {
+            margin-top: $weather-compact-temp-item-margin-top;
+        }
+
+        .#{$prefix}temp-data__card {
+            display: flex;
+            align-items: center;
+        }
+
+        .#{$prefix}temp-data__time,
+        .#{$prefix}temp-data__day {
+            flex-grow: 1;
+            flex-basis: 0;
+        }
+
+        .#{$prefix}temp-data__icon {
+            width: $weather-compact-temp-item-icon-size;
+        }
+
+        .#{$prefix}temp-data__temp {
+            padding-left: $weather-compact-temp-item-padding-left;
+            font-weight: $weather-temp-data-temp-font-weight;
+        }
+    }
+}
+
+.#{$prefix}compact { 
+    padding: $weather-compact-padding;
+    .#{$prefix}compact__main {
+        background: $weather-compact-main-bg;
+        padding: $weather-compact-main-padding;
+        border-radius: $weather-compact-main-border-radius;
+        margin-bottom: $weather-compact-main-margin-bottom;
+
+        .#{$prefix}compact__main__head {
+            display: flex;
+            align-items: center;
+            margin-bottom: $weather-compact-main-head-margin-bottom;
+            .#{$prefix}main-icon {
+                display: flex;
+                align-items: center;
+                flex-direction: row-reverse;
+                flex-grow: 1;
+                flex-basis: 0;
+                padding-left: $weather-compact-main-icon-padding-left;
+                .#{$prefix}temp {
+                    margin-left: auto;
+                    font-size: $weather-compact-main-temp-font-size;
+                    font-weight: $weather-temp-font-weight;
+                }
+            }
+        }
+
+        .#{$prefix}temp-list {
+            margin-top: $weather-compact-main-head-margin-bottom;
+        }
+
+        .#{$prefix}temp-detail .#{$prefix}temp-detail__item .#{$prefix}temp-detail__title,
+        .#{$prefix}temp-list .#{$prefix}temp-list__item .#{$prefix}temp-list__item__text {
+            display: inline-flex;
+            width: 50%;
+        }
+    }
+
+    .#{$prefix}compact__details {
+        padding-left: $weather-compact-details-padding-x;
+        padding-right: $weather-compact-details-padding-x;
+    }
+}
+
+.#{$prefix}full {
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+
+    .#{$prefix}full__main {
+        position: fixed;
+        left: $weather-full-main-temp-position-x;
+        bottom: $weather-full-main-temp-position-y;
+        z-index: 1;
+
+        .#{$prefix}main-icon {
+            display: flex;
+            align-items: center;
+            flex-direction: row-reverse;
+            justify-content: flex-end;
+            > * {
+                display: inline-flex;
+            }
+    
+            .#{$prefix}temp {
+                margin-left: $weather-temp-margin;
+                font-size: $weather-full-main-temp-font-size;
+            }
+        }
+
+        .#{$prefix}description {
+            display: block;
+            margin-top: $weather-description-margin-y;
+            margin-bottom: $weather-description-margin-y;
+            font-size: $weather-full-description-temp-font-size;
+        }
+
+        .#{$prefix}temp-list {
+            display: flex;
+            flex-wrap: wrap;
+            .#{$prefix}temp-list__item {
+                flex: 0 0 $weather-temp-details-item-width;
+                max-width: $weather-temp-details-item-width;
+                margin-bottom: $weather-full-temp-details-margin-y;
+                .#{$prefix}temp-list__item__text {
+                    font-size: $weather-temp-details-title-font-size;
+                    font-weight: $weather-temp-details-title-font-weight;
+                    text-transform: $weather-temp-details-title-transform;
+                }
+            }
+        }
+    }
+
+    .#{$prefix}full__details {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        overflow: auto;
+        z-index: 1;
+        padding: $weather-full-details-padding-y $weather-full-details-padding-x;
+        width: $weather-full-details-width;
+        background-color: $weather-full-details-bg;
+
+        .#{$prefix}title {
+            display: block;
+            font-weight: $weather-title-font-weight;
+            text-transform: $weather-title-text-transform;
+            margin-bottom: $weather-title-margin-bottom;
+        }
+
+        .#{$prefix}full__details__item {
+            + .#{$prefix}full__details__item {
+                margin-top: $weather-full-details-item-margin-y;
+                padding-top: $weather-full-details-item-padding-y;
+                border-top: 1px solid $weather-full-details-item-border-color;
+            }
+        }
+
+        .#{$prefix}temp-detail .#{$prefix}temp-detail__item {
+            margin-bottom: $weather-full-details-temp-item-margin-bottom;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+}
+
+.#{$prefix}minimal {
+    padding: $weather-compact-padding;
+
+    .#{$prefix}temp-data::-webkit-scrollbar {
+        background-color: rgba($black, .2);
+    }
+
+    .#{$prefix}temp-data::-webkit-scrollbar-thumb {
+        background-color: rgba($black, .5);
+    }
+
+    .#{$prefix}date,
+    .#{$prefix}temp {
+        display: block;
+        text-align: center;
+    }
+
+    .#{$prefix}date {
+        margin-bottom: $weather-date-margin-bottom;
+    }
+
+    .#{$prefix}temp {
+        font-size: $weather-temp-font-size;
+        font-weight: $weather-temp-font-weight;
+        margin-bottom: $weather-temp-margin;
+    }
+
+    .#{$prefix}minimal__details {
+        margin-top: $weather-minimal-details-margin-top;
+    }
+
+    .#{$prefix}temp-detail,
+    .#{$prefix}temp-list {
+        padding: $weather-temp-details-item-padding;
+        text-align: center;
+    }
+
+    .#{$prefix}temp-detail {
+        border-bottom-left-radius: $weather-temp-details-item-border-radius; 
+        border-bottom-right-radius: $weather-temp-details-item-border-radius; 
+        background-color: $weather-minimal-temp-bg;
+     }
+
+    .#{$prefix}temp-list {
+       border-top-left-radius: $weather-temp-details-item-border-radius; 
+       border-top-right-radius: $weather-temp-details-item-border-radius; 
+       background-color: scale-color($weather-minimal-temp-bg, $lightness: -3%)
+    }
+
+    .#{$prefix}temp-data {
+        .#{$prefix}temp-data__item {
+            + .#{$prefix}temp-data__item {
+                margin-left: $weather-minimal-temp-item-margin-left;
+            }
+        }
+        
+        .#{$prefix}temp-data__card {
+            padding: $weather-minimal-temp-card-padding-y $weather-minimal-temp-card-padding-x;
+            border-radius: $weather-minimal-temp-card-border-radius;
+            background-color: $weather-minimal-temp-card-bg;
+            color: $weather-minimal-temp-card-color;
+        }
+    }
+    
 }

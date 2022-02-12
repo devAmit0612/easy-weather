@@ -10,16 +10,22 @@
 </head>
 <body>
     <div id="weather"></div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <h3>Please check your console</h3>
+    
     <script src="js/easy-weather.js"></script>
     <script type="text/javascript">
         const weather = new EasyWeather('#weather', {
             key: '1d74efe09d3495016664881f4a09a7ff',
-            location: 'Ahmedabad',
+            location: 'London',
             iconStyle: 'line',
+            sunTime: true,
+            details: true,
+            forecast: true,
+            quarterly: true,
+            description: true,
 
-            customTemplate: function(weather) {
+            customTemplate: function(element, weather) {
+                console.log('element', element);
                 console.log('weather', weather);
             }
         });

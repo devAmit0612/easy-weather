@@ -31,6 +31,8 @@ export default class Api extends Weather {
 				this.apiWeatherData = data;
 				if (this.options.forecast || this.options.quarterly) {
 					this.getForecastWeather();
+				} else {
+					this.initWeatherDate();
 				}
 			} else {
 				alert('Message: ', data.message);

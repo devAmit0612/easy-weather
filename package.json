@@ -1,5 +1,5 @@
 {
-	"name": "easy-weather",
+	"name": "easy-weather-npm",
 	"version": "1.0.0",
 	"description": "A JavaScript plugin for getting Weather information",
 	"scripts": {

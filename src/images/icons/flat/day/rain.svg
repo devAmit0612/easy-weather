@@ -1,5 +1,5 @@
 <svg viewBox="0 0 52 49" xmlns="http://www.w3.org/2000/svg">
-	<path class="ew-sun" fill-rule="evenodd" clip-rule="evenodd" d="M19.998,29.998c-5.523,0-10-4.477-10-10c0-5.522,4.477-10,10-10 c5.522,0,10,4.478,10,10C29.998,25.521,25.52,29.998,19.998,29.998z"/>
+	<path class="ew-sun" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M19.998,29.998c-5.523,0-10-4.477-10-10c0-5.522,4.477-10,10-10 c5.522,0,10,4.478,10,10C29.998,25.521,25.52,29.998,19.998,29.998z"/>
 	<g class="ew-sun-ray" fill="currentColor">
 		<path fill-rule="evenodd" clip-rule="evenodd" d="M39,20.999h-6c-0.553,0-1-0.448-1-1c0-0.552,0.447-1,1-1h6 c0.552,0,1,0.448,1,1C40,20.55,39.552,20.999,39,20.999z"/>
 		<path fill-rule="evenodd" clip-rule="evenodd" d="M29.897,11.515c-0.391,0.391-1.023,0.391-1.414,0 s-0.391-1.024,0-1.414l4.242-4.243c0.391-0.391,1.023-0.391,1.414,0s0.391,1.023,0,1.414L29.897,11.515z"/>

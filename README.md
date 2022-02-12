@@ -4,7 +4,7 @@ This plugin provide a current [Weather](https://openweathermap.org/api) informat
 __**Note: This is an API base plugin, you must have any serve to use it.**__
 
 ## How to use it?
-For use this plugin firstly you have to Register your project on **Open Weather Map** and obtain an API key.
+For use this plugin firstly you have to [Register](https://home.openweathermap.org/users/sign_in) your project on **Open Weather Map** and obtain an API key.
 
 ## Demo
 * [Simple Weather](https://devamit0612.github.io/easy-weather/dist/)
